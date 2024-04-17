@@ -1,17 +1,32 @@
 
 function App() {
+
+  const songList = [
+    {
+      songTitle: "Songtitle",
+      artist: ["artist1", "artist2"]
+
+    },
+    {
+      songTitle: "Songtitle",
+      artist: ["artist1", "artist2"]
+
+    },
+    {
+      songTitle: "Songtitle",
+      artist: ["artist1", "artist2"]
+
+    },
+
+  ]
+
   return (
-    <div className="bg-neutral-200 h-screen flex justify-center items-center">
-      <div className="flex h-[600px] w-[1000px] bg-stone-500 p-1 space-x-1">
-        <div className="flex flex-col w-1/3 space-y-1">
-          <div className="bg-red-300 rounded h-1/2 w-full"></div>
-          <div className="bg-red-400 rounded h-1/2 w-full"></div>
-        </div>
-        <div className="bg-red-600 rounded flex-1 w-2/3"></div>
+    <div className="bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('./img/background.webp')] h-screen w-screen bg-cover bg-center">
+      <div className="bg-black w-full h-16 py-4 opacity-70">
+        <h1 className="text-neutral-50 text-xl text-center">Jamming App</h1>
       </div>
 
-
-    </div >
+    </div>
   );
 }
 

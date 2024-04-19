@@ -1,4 +1,5 @@
 import SearchBar from "./Components/SearchBar/SearchBar";
+import SearchResults from "./Components/SearchResults/SearchResults";
 
 
 
@@ -29,6 +30,10 @@ function App() {
         <h1 className="text-neutral-50 text-xl text-center">Jamming App</h1>
       </div>
       <SearchBar />
+      <div className="py-1 flex flex-wrap justify-center">
+        <SearchResults songList={songList} />
+
+      </div>
 
     </div>
   );

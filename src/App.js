@@ -1,5 +1,6 @@
 import SearchBar from "./Components/SearchBar/SearchBar";
 import SearchResults from "./Components/SearchResults/SearchResults";
+import Playlist from "./Components/Playlist/Playlist";
 
 
 
@@ -32,6 +33,7 @@ function App() {
       <SearchBar />
       <div className="py-1 flex flex-wrap justify-center">
         <SearchResults songList={songList} />
+        <Playlist />
 
       </div>
 

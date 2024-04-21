@@ -36,7 +36,7 @@ function App() {
 
   const [searchResult, setSearchResult] = useState(songList);
   const [playList, setPlayList] = useState(playListMock);
-  const [playlistTitle, setPlaylistTitle] = useState("");
+
 
   const addSongToPlaylist = (song) => {
 

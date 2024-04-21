@@ -7,7 +7,7 @@ const Track = (props) => {
                 <div className="w-full">{props.song?.songTitle || "Song Title"}</div>
                 <div className="text-sm text-gray-300">{props.song?.artist.join(", ") || "Song Artist"} | {props.song?.album || "Album name"}</div>
             </div>
-            <button className="text-center text-2xl px-2" onClick={() => props.addSongToPlayList(props.song)}>+</button>
+            <button className="text-center text-2xl px-2" onClick={() => props.addSongToPlayList(props.song)}>{props.sign}</button>
         </div>
     )
 

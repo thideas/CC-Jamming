@@ -1,7 +1,7 @@
 import SearchBar from "./Components/SearchBar/SearchBar";
 import SearchResults from "./Components/SearchResults/SearchResults";
 import Playlist from "./Components/Playlist/Playlist";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 
@@ -38,6 +38,7 @@ function App() {
   const [playList, setPlayList] = useState(playListMock);
 
 
+
   const addSongToPlaylist = (song) => {
 
     if (!playList.includes(song)) {
@@ -50,7 +51,25 @@ function App() {
     setPlayList(newPlaylist)
   }
 
+  useEffect(() => {
+    fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      /* body: new URLSearchParams({
+         'grant_type': 'client_credentials',
+         'client_id': '8bf3ea07d387461090d16bfbfd3df223',    
+         'client_secret': '19bb8745aa0b4f16bbafc008306bc150' 
+       }) */
+      body: "grant_type=client_credentials&client_id=8bf3ea07d387461090d16bfbfd3df223&client_secret=19bb8745aa0b4f16bbafc008306bc150"
+    })
+      .then(res => res.json())
+      .then(res => console.log(res))
 
+
+
+  }, [])
 
 
   return (

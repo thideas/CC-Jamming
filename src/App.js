@@ -35,7 +35,11 @@ function App() {
   const playListMock = []
 
   const [searchResult, setSearchResult] = useState(songList);
-  const [playList, setPlayList] = useState(playListMock)
+  const [playList, setPlayList] = useState(playListMock);
+
+  const addSongToPlaylist = (song) => {
+    setPlayList([...playList, song]);
+  }
 
 
 
@@ -46,7 +50,7 @@ function App() {
       </div>
       <SearchBar />
       <div className="py-1 flex flex-wrap justify-center">
-        <SearchResults songList={searchResult} />
+        <SearchResults songList={searchResult} addSongToPlayList={addSongToPlaylist} />
         <Playlist playList={playList} />
 
       </div>

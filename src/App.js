@@ -9,17 +9,20 @@ function App() {
   const songList = [
     {
       songTitle: "Song 1 title",
-      artist: ["artist1", "artist2"]
+      artist: ["artist1", "artist2"],
+      album: "Album title 1"
 
     },
     {
       songTitle: "Song 2 title",
-      artist: ["artist1", "artist2"]
+      artist: ["artist1", "artist2"],
+      album: "Album title 2"
 
     },
     {
       songTitle: "Song 3 title",
-      artist: ["Single artist"]
+      artist: ["Single artist"],
+      album: "Album title 3"
 
     },
 

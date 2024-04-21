@@ -38,11 +38,15 @@ function App() {
   const [playList, setPlayList] = useState(playListMock);
 
   const addSongToPlaylist = (song) => {
-    setPlayList([...playList, song]);
+
+    if (!playList.includes(song)) {
+      setPlayList([...playList, song]);
+    }
   }
 
   const deleteSongFromPlaylist = (song) => {
-
+    const newPlaylist = playList.filter((el) => song.id !== el.id);
+    setPlayList(newPlaylist)
   }
 
 
@@ -55,7 +59,7 @@ function App() {
       <SearchBar />
       <div className="py-1 flex flex-wrap justify-center items-start">
         <SearchResults songList={searchResult} onAddOrDelete={addSongToPlaylist} />
-        <Playlist playList={playList} />
+        <Playlist playList={playList} onAddOrDelete={deleteSongFromPlaylist} />
 
       </div>
 

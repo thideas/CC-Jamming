@@ -36,6 +36,7 @@ function App() {
 
   const [searchResult, setSearchResult] = useState(songList);
   const [playList, setPlayList] = useState(playListMock);
+  const [playlistTitle, setPlaylistTitle] = useState("");
 
   const addSongToPlaylist = (song) => {
 
@@ -48,6 +49,7 @@ function App() {
     const newPlaylist = playList.filter((el) => song.id !== el.id);
     setPlayList(newPlaylist)
   }
+
 
 
 

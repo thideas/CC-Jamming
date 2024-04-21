@@ -12,23 +12,23 @@ function App() {
   const songList = [
     {
       id: 1,
-      songTitle: "Song 1 title",
-      artist: ["artist1", "artist2"],
-      album: "Album title 1"
+      name: "Song 1 title",
+      artists: [{ name: "artist1" }, { name: "artist2" }],
+      album: { "name": "Album title new 1" }
 
     },
     {
       id: 2,
-      songTitle: "Song 2 title",
-      artist: ["artist1", "artist2"],
-      album: "Album title 2"
+      name: "Song 2 title",
+      artists: [{ name: "artist1" }, { name: "artist2" }],
+      album: { "name": "Album title new 2" }
 
     },
     {
       id: 3,
-      songTitle: "Song 3 title",
-      artist: ["Single artist"],
-      album: "Album title 3"
+      name: "Song 3 title",
+      artists: [{ name: "artist45" }, { name: "artist67" }],
+      album: { "name": "Album title new 3" }
 
     },
 
@@ -72,9 +72,9 @@ function App() {
 
   const searchSpotify = async (searchTerm) => {
 
-    const response = await fetch(`https://api.spotify.com/v1/search?q=Jackson&type=track`, { headers: { 'Authorization': `Bearer ${accessToken}` } });
+    const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(searchTerm)}&type=track`, { headers: { 'Authorization': `Bearer ${accessToken}` } });
     const data = await response.json();
-    console.log(data)
+    setSearchResult(data.tracks.items)
 
   }
 

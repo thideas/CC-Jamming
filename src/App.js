@@ -9,34 +9,11 @@ function App() {
 
 
 
-  const songList = [
-    {
-      id: 1,
-      name: "Song 1 title",
-      artists: [{ name: "artist1" }, { name: "artist2" }],
-      album: { "name": "Album title new 1" }
 
-    },
-    {
-      id: 2,
-      name: "Song 2 title",
-      artists: [{ name: "artist1" }, { name: "artist2" }],
-      album: { "name": "Album title new 2" }
-
-    },
-    {
-      id: 3,
-      name: "Song 3 title",
-      artists: [{ name: "artist45" }, { name: "artist67" }],
-      album: { "name": "Album title new 3" }
-
-    },
-
-  ]
 
   const playListMock = []
 
-  const [searchResult, setSearchResult] = useState(songList);
+  const [searchResult, setSearchResult] = useState([]);
   const [playList, setPlayList] = useState(playListMock);
   const [accessToken, setAccessToken] = useState('test');
 
@@ -80,7 +57,7 @@ function App() {
 
 
   return (
-    <div className="p-1 bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('./img/background.webp')] h-screen w-screen bg-cover bg-center overflow-scroll">
+    <div className="p-1 pb-3.5 bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('./img/background.webp')] h-screen w-screen bg-cover bg-center overflow-scroll">
       <div className="rounded bg-black w-full h-16 py-4 opacity-70">
         <h1 className="text-neutral-50 text-xl text-center">Jamming App</h1>
       </div>

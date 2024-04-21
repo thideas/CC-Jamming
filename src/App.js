@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 
 function App() {
 
+
+
   const songList = [
     {
       id: 1,
@@ -36,6 +38,7 @@ function App() {
 
   const [searchResult, setSearchResult] = useState(songList);
   const [playList, setPlayList] = useState(playListMock);
+  const [accessToken, setAccessToken] = useState('test');
 
 
 
@@ -57,19 +60,23 @@ function App() {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      /* body: new URLSearchParams({
-         'grant_type': 'client_credentials',
-         'client_id': '8bf3ea07d387461090d16bfbfd3df223',    
-         'client_secret': '19bb8745aa0b4f16bbafc008306bc150' 
-       }) */
-      body: "grant_type=client_credentials&client_id=8bf3ea07d387461090d16bfbfd3df223&client_secret=19bb8745aa0b4f16bbafc008306bc150"
+      body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_CLIENTID}&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`
     })
       .then(res => res.json())
-      .then(res => console.log(res))
+      .then(res => { setAccessToken(res.access_token) })
+
 
 
 
   }, [])
+
+  const searchSpotify = async (searchTerm) => {
+
+    const response = await fetch(`https://api.spotify.com/v1/search?q=Jackson&type=track`, { headers: { 'Authorization': `Bearer ${accessToken}` } });
+    const data = await response.json();
+    console.log(data)
+
+  }
 
 
   return (
@@ -77,7 +84,7 @@ function App() {
       <div className="rounded bg-black w-full h-16 py-4 opacity-70">
         <h1 className="text-neutral-50 text-xl text-center">Jamming App</h1>
       </div>
-      <SearchBar />
+      <SearchBar searchSpotify={searchSpotify} />
       <div className="py-1 flex flex-wrap justify-center items-start">
         <SearchResults songList={searchResult} onAddOrDelete={addSongToPlaylist} />
         <Playlist playList={playList} onAddOrDelete={deleteSongFromPlaylist} />

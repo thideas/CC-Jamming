@@ -41,6 +41,10 @@ function App() {
     setPlayList([...playList, song]);
   }
 
+  const deleteSongFromPlaylist = (song) => {
+
+  }
+
 
 
   return (
@@ -50,7 +54,7 @@ function App() {
       </div>
       <SearchBar />
       <div className="py-1 flex flex-wrap justify-center items-start">
-        <SearchResults songList={searchResult} addSongToPlayList={addSongToPlaylist} />
+        <SearchResults songList={searchResult} onAddOrDelete={addSongToPlaylist} />
         <Playlist playList={playList} />
 
       </div>

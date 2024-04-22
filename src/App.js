@@ -42,7 +42,7 @@ function App() {
       .then(res => res.json())
       .then(res => { setAccessToken(res.access_token) })
 
-    setNewAccess(window.location.hash)
+    setNewAccess(window.location.hash.split("&")[0].split("=")[1])
 
 
 
@@ -51,7 +51,7 @@ function App() {
 
   const searchSpotify = async (searchTerm) => {
 
-    const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(searchTerm)}&type=track`, { headers: { 'Authorization': `Bearer ${accessToken}` } });
+    const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(searchTerm)}&type=track`, { headers: { 'Authorization': `Bearer ${newAccess}` } });
     const data = await response.json();
     setSearchResult(data.tracks.items)
 
@@ -64,10 +64,20 @@ function App() {
         <h1 className="text-neutral-50 text-xl text-center">Jamming App</h1>
 
       </div>
-      <div className="flex flex-col items-center gap-2">
-        <a href={`https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(process.env.REACT_APP_CLIENTID)}&scope=playlist-modify-public&redirect_uri=${encodeURIComponent('http://localhost:3000/')}`} className="p-2 mt-2 inline-block bg-green-500 text-white">Login to Spotify</a>
-        <div className="border-2 border-white text-white p-2">{newAccess || "Tu będzie acccess token"}</div>
-      </div>
+
+      {newAccess ? "" :
+
+        <>
+
+          <div className="flex flex-col items-center gap-2">
+            <a href={`https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(process.env.REACT_APP_CLIENTID)}&scope=playlist-modify-public&redirect_uri=${encodeURIComponent('http://localhost:3000/')}`} className="p-2 mt-2 inline-block bg-green-500 text-white">Login to Spotify</a>
+            <div className="border-2 border-white text-white p-2">{newAccess || "Tu będzie acccess token"}</div>
+          </div>
+
+        </>
+
+
+      }
 
 
       {

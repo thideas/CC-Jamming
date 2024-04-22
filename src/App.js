@@ -2,6 +2,7 @@ import SearchBar from "./Components/SearchBar/SearchBar";
 import SearchResults from "./Components/SearchResults/SearchResults";
 import Playlist from "./Components/Playlist/Playlist";
 import { useState, useEffect } from "react";
+import spotifyLogo from "./img/Spotify_Logo.png";
 
 
 
@@ -32,7 +33,7 @@ function App() {
   }
 
   useEffect(() => {
-    fetch('https://accounts.spotify.com/api/token', {
+    /* fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -41,6 +42,7 @@ function App() {
     })
       .then(res => res.json())
       .then(res => { setAccessToken(res.access_token) })
+      */
 
     setNewAccess(window.location.hash.split("&")[0].split("=")[1])
 
@@ -69,9 +71,9 @@ function App() {
 
         <>
 
-          <div className="flex flex-col items-center gap-2">
-            <a href={`https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(process.env.REACT_APP_CLIENTID)}&scope=playlist-modify-public&redirect_uri=${encodeURIComponent('http://localhost:3000/')}`} className="p-2 mt-2 inline-block bg-green-500 text-white">Login to Spotify</a>
-            <div className="border-2 border-white text-white p-2">{newAccess || "Tu będzie acccess token"}</div>
+          <div className="mx-auto py-10 mt-20 flex flex-col items-center gap-10 bg-[rgba(0,0,0,0.7)] w-72 rounded">
+            <img src={spotifyLogo} className="w-40" />
+            <a href={`https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(process.env.REACT_APP_CLIENTID)}&scope=playlist-modify-public&redirect_uri=${encodeURIComponent('http://localhost:3000/')}`} className="p-3 mt-2 inline-block bg-green-500 font-semibold text-white rounded-full border-2 border-white bg-transparent hover:bg-green-500 transition duration-400">Login to Spotify</a>
           </div>
 
         </>

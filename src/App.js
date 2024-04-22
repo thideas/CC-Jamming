@@ -15,8 +15,8 @@ function App() {
 
   const [searchResult, setSearchResult] = useState([]);
   const [playList, setPlayList] = useState(playListMock);
-  const [accessToken, setAccessToken] = useState('test');
-  const [newAccess, setNewAccess] = useState(null)
+  const [accessToken, setAccessToken] = useState(null);
+
 
 
 
@@ -44,7 +44,7 @@ function App() {
       .then(res => { setAccessToken(res.access_token) })
       */
 
-    setNewAccess(window.location.hash.split("&")[0].split("=")[1])
+    setAccessToken(window.location.hash.split("&")[0].split("=")[1])
 
 
 
@@ -53,7 +53,7 @@ function App() {
 
   const searchSpotify = async (searchTerm) => {
 
-    const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(searchTerm)}&type=track`, { headers: { 'Authorization': `Bearer ${newAccess}` } });
+    const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(searchTerm)}&type=track`, { headers: { 'Authorization': `Bearer ${accessToken}` } });
     const data = await response.json();
     setSearchResult(data.tracks.items)
 
@@ -67,7 +67,7 @@ function App() {
 
       </div>
 
-      {newAccess ? "" :
+      {accessToken ? "" :
 
         <>
 
@@ -83,7 +83,7 @@ function App() {
 
 
       {
-        newAccess ?
+        accessToken ?
           (
             <>
               <SearchBar searchSpotify={searchSpotify} />

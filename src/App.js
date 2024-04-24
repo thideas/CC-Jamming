@@ -51,25 +51,13 @@ function App() {
 
 
   return (
-    <div className="p-1 pb-3.5 bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('./img/background.webp')] h-screen w-screen bg-cover bg-center overflow-scroll">
+    <div className="p-1 pb-3.5 bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('./img/background.webp')] h-screen w-screen bg-cover bg-center overflow-scroll flex flex-col">
       <div className="rounded bg-black w-full h-16 py-4 opacity-70">
         <h1 className="text-neutral-50 text-xl text-center">Jamming App</h1>
 
       </div>
 
-      {accessToken ? "" :
 
-        <>
-
-          <div className="mx-auto py-10 mt-20 flex flex-col items-center gap-10 bg-[rgba(0,0,0,0.7)] w-72 rounded">
-            <img src={spotifyLogo} className="w-40" />
-            <a href={`https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(process.env.REACT_APP_CLIENTID)}&scope=playlist-modify-public&redirect_uri=${encodeURIComponent('http://localhost:3000/')}`} className="p-3 mt-2 inline-block bg-green-500 font-semibold text-white rounded-full border-2 border-white bg-transparent hover:bg-green-500 transition duration-400">Login to Spotify</a>
-          </div>
-
-        </>
-
-
-      }
 
 
       {
@@ -81,7 +69,22 @@ function App() {
                 <SearchResults songList={searchResult} onAddOrDelete={addSongToPlaylist} />
                 <Playlist playList={playList} onAddOrDelete={deleteSongFromPlaylist} />
 
-              </div> </>) : ''
+              </div> </>)
+
+
+          :
+          <>
+
+            <div className="mx-auto mt-20 py-10 flex flex-col items-center gap-8 bg-[rgba(0,0,0,0.7)] w-96 rounded">
+              <img src={spotifyLogo} className="w-40" />
+              <p className="text-white text-center p-4">In order to modify your playlists, <br /> login to your Spotify account.</p>
+              <a href={`https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(process.env.REACT_APP_CLIENTID)}&scope=playlist-modify-public&redirect_uri=${encodeURIComponent('http://localhost:3000/')}`} className="p-3 mt-2 font-semibold text-white rounded-full border-2 border-white bg-transparent hover:bg-green-500 transition duration-400">Login to Spotify</a>
+            </div>
+
+
+          </>
+
+
       }
 
     </div >

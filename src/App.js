@@ -33,8 +33,23 @@ function App() {
   }
 
   useEffect(() => {
+    const hrefAccessToken = window.location.hash.split("&")[0].split("=")[1];
 
-    setAccessToken(window.location.hash.split("&")[0].split("=")[1])
+    if (hrefAccessToken) {
+
+      window.localStorage.setItem("accessToken", hrefAccessToken)
+      const tokenExpiresIn = window.location.hash.split("&")[2].split("=")[1];
+
+      setTimeout(() => {
+        window.localStorage.removeItem("accessToken");
+        setAccessToken(null);
+        window.location.href = "http://localhost:3000/"
+      }, tokenExpiresIn);
+
+    }
+
+    setAccessToken(window.localStorage.getItem("accessToken"));
+
 
 
 
@@ -54,6 +69,7 @@ function App() {
     <div className="p-1 pb-3.5 bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('./img/background.webp')] h-screen w-screen bg-cover bg-center overflow-scroll flex flex-col">
       <div className="rounded bg-black w-full h-16 py-4 opacity-70">
         <h1 className="text-neutral-50 text-xl text-center">Jamming App</h1>
+
 
       </div>
 

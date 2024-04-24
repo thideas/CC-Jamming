@@ -32,6 +32,14 @@ function App() {
     setPlayList(newPlaylist)
   }
 
+
+  const logOut = () => {
+    window.localStorage.removeItem("accessToken");
+    setAccessToken(null);
+    window.location.href = "http://localhost:3000/";
+  }
+
+
   useEffect(() => {
     const hrefAccessToken = window.location.hash.split("&")[0].split("=")[1];
 
@@ -41,10 +49,8 @@ function App() {
       const tokenExpiresIn = window.location.hash.split("&")[2].split("=")[1];
 
       setTimeout(() => {
-        window.localStorage.removeItem("accessToken");
-        setAccessToken(null);
-        window.location.href = "http://localhost:3000/"
-      }, tokenExpiresIn);
+        logOut();
+      }, tokenExpiresIn * 1000);
 
     }
 
@@ -65,11 +71,19 @@ function App() {
   }
 
 
+
+
   return (
     <div className="p-1 pb-3.5 bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('./img/background.webp')] h-screen w-screen bg-cover bg-center overflow-scroll flex flex-col">
-      <div className="rounded bg-black w-full h-16 py-4 opacity-70">
+      <div className="rounded bg-black w-full h-16 py-4 opacity-70 relative">
         <h1 className="text-neutral-50 text-xl text-center">Jamming App</h1>
+        {accessToken &&
 
+          <button className="py-1 pr-3  text-white rounded absolute right-4 top-4 flex items-center" onClick={logOut}>
+
+            <svg class="h-4 w-4 text-white mx-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />  <polyline points="16 17 21 12 16 7" />  <line x1="21" y1="12" x2="9" y2="12" /></svg>
+            Log out
+          </button>}
 
       </div>
 

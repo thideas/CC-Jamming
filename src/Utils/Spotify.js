@@ -18,6 +18,12 @@ const spotify = {
         const response = await fetch('https://api.spotify.com/v1/me', { headers: { 'Authorization': `Bearer ${accessToken}` } });
         const data = await response.json();
         return data
+    },
+
+    async createPlaylist(playlistName, userId, accessToken) {
+        const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, { method: 'POST', headers: { 'Authorization': `Bearer ${accessToken}` }, body: JSON.stringify({ "name": playlistName, "Description": "", "public": false }) });
+        const data = await response.json();
+        console.log(data)
     }
 
 

@@ -47,6 +47,13 @@ function App() {
 
   }
 
+  const handlePlaylistSubmit = async () => {
+    await spotify.createPlaylist("Testowa nazwa", userProfile.id, accessToken);
+  }
+
+
+
+
   useEffect(() => {
     const hrefAccessToken = spotify.getAccessTokenFromURL();
 
@@ -78,6 +85,8 @@ function App() {
 
 
 
+
+
   return (
     <div className="p-1 pb-3.5 bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('./img/background.webp')] h-screen w-screen bg-cover bg-center overflow-scroll flex flex-col">
       <div className="rounded bg-black w-full h-16 py-4 opacity-70 relative">
@@ -105,7 +114,7 @@ function App() {
               <SearchBar searchSpotify={searchSpotify} />
               <div className="py-1 flex flex-wrap justify-center items-start">
                 <SearchResults songList={searchResult} onAddOrDelete={addSongToPlaylist} />
-                <Playlist playList={playList} onAddOrDelete={deleteSongFromPlaylist} />
+                <Playlist playList={playList} onAddOrDelete={deleteSongFromPlaylist} onSubmit={handlePlaylistSubmit} />
 
               </div> </>)
 

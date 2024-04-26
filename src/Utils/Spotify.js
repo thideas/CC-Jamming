@@ -23,7 +23,15 @@ const spotify = {
     async createNewPlaylist(playlistName, userId, accessToken) {
         const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, { method: 'POST', headers: { 'Authorization': `Bearer ${accessToken}` }, body: JSON.stringify({ "name": playlistName, "Description": "", "public": false }) });
         const data = await response.json();
-        console.log(data)
+        return data.id;
+    },
+
+    async addTracks(playlist, playlistId, accessToken) {
+
+        const uris = playlist.map((song) => song.uri);
+        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { method: 'POST', headers: { 'Authorization': `Bearer ${accessToken}` }, body: JSON.stringify({ "uris": uris, "position": 0 }) });
+        const data = await response.json();
+
     }
 
 

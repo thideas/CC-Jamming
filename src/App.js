@@ -48,7 +48,8 @@ function App() {
   }
 
   const createPlaylist = async (playlistName) => {
-    await spotify.createNewPlaylist(playlistName, userProfile.id, accessToken);
+    const playlistId = await spotify.createNewPlaylist(playlistName, userProfile.id, accessToken);
+    spotify.addTracks(playList, playlistId, accessToken)
 
   }
 

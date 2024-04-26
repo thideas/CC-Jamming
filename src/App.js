@@ -60,8 +60,7 @@ function App() {
       }, tokenExpiresIn * 1000);
 
       (async () => {
-        const response = await fetch('https://api.spotify.com/v1/me', { headers: { 'Authorization': `Bearer ${hrefAccessToken}` } });
-        const data = await response.json();
+        const data = await spotify.fetchProfile(hrefAccessToken);
         setUserProfile(data);
       })();
 

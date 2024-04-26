@@ -1,7 +1,7 @@
-spotify = {
+const spotify = {
     spotifyText: "test spotify",
     spotifyTest() {
-        console.log(this.spotiyText)
+        console.log(this.spotifyText)
     }
 
 }

@@ -3,6 +3,7 @@ import SearchResults from "./Components/SearchResults/SearchResults";
 import Playlist from "./Components/Playlist/Playlist";
 import { useState, useEffect } from "react";
 import spotifyLogo from "./img/Spotify_Logo.png";
+import spotify from "./Utils/Spotify";
 
 
 

@@ -10,15 +10,9 @@ import spotify from "./Utils/Spotify";
 function App() {
 
 
-
-
-  const playListMock = []
-
   const [searchResult, setSearchResult] = useState([]);
-  const [playList, setPlayList] = useState(playListMock);
+  const [playList, setPlayList] = useState([]);
   const [accessToken, setAccessToken] = useState(null);
-
-
 
 
   const addSongToPlaylist = (song) => {
@@ -56,11 +50,6 @@ function App() {
     }
 
     setAccessToken(window.localStorage.getItem("accessToken"));
-
-
-
-
-
 
   }, [])
 
@@ -109,7 +98,7 @@ function App() {
             <div className="mx-auto mt-20 py-10 flex flex-col items-center gap-8 bg-[rgba(0,0,0,0.7)] w-96 rounded">
               <img src={spotifyLogo} className="w-40" />
               <p className="text-white text-center p-4">In order to modify your playlists, <br /> login to your Spotify account.</p>
-              <a href={`https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(process.env.REACT_APP_CLIENTID)}&scope=playlist-modify-public&redirect_uri=${encodeURIComponent('http://localhost:3000/')}`} className="p-3 mt-2 font-semibold text-white rounded-full border-2 border-white bg-transparent hover:bg-green-500 transition duration-400">Login to Spotify</a>
+              <a href={spotify.authorizeURL} className="p-3 mt-2 font-semibold text-white rounded-full border-2 border-white bg-transparent hover:bg-green-500 transition duration-400">Login to Spotify</a>
             </div>
 
 

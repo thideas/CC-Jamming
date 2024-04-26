@@ -9,6 +9,9 @@ const Playlist = (props) => {
     const handleChange = (e) => {
         setPlaylistname(e.target.value)
     }
+    const handleSubmit = () => {
+        props.onSubmit(playlistName);
+    }
 
 
     return (
@@ -16,7 +19,7 @@ const Playlist = (props) => {
             <input className="w-full bg-transparent py-2 text-white text-2xl border-b border-[rgba(255,255,255,0.5)] focus:outline-none" placeholder="New Playlist" value={playlistName} onChange={handleChange} />
             {props.playList.map((song) => <Track song={song} key={song.id} onAddOrDelete={props.onAddOrDelete} sign={"-"} />)}
 
-            <button className="block py-1 px-8 my-3 mx-auto bg-green-500 rounded-full text-white" onClick={props.onSubmit}>Save playlist</button>
+            <button className="block py-1 px-8 my-3 mx-auto bg-green-500 rounded-full text-white" onClick={handleSubmit}>Save playlist</button>
 
         </div>
     )

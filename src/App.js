@@ -47,8 +47,9 @@ function App() {
 
   }
 
-  const handlePlaylistSubmit = async () => {
-    await spotify.createPlaylist("Testowa nazwa", userProfile.id, accessToken);
+  const createPlaylist = async (playlistName) => {
+    await spotify.createNewPlaylist(playlistName, userProfile.id, accessToken);
+
   }
 
 
@@ -114,7 +115,7 @@ function App() {
               <SearchBar searchSpotify={searchSpotify} />
               <div className="py-1 flex flex-wrap justify-center items-start">
                 <SearchResults songList={searchResult} onAddOrDelete={addSongToPlaylist} />
-                <Playlist playList={playList} onAddOrDelete={deleteSongFromPlaylist} onSubmit={handlePlaylistSubmit} />
+                <Playlist playList={playList} onAddOrDelete={deleteSongFromPlaylist} onSubmit={createPlaylist} />
 
               </div> </>)
 

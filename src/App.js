@@ -42,12 +42,12 @@ function App() {
 
 
   useEffect(() => {
-    const hrefAccessToken = window.location.hash.split("&")[0].split("=")[1];
+    const hrefAccessToken = spotify.getAccessTokenFromURL();
 
     if (hrefAccessToken) {
 
       window.localStorage.setItem("accessToken", hrefAccessToken)
-      const tokenExpiresIn = window.location.hash.split("&")[2].split("=")[1];
+      const tokenExpiresIn = spotify.getTokenExpiryFromURL();
 
       setTimeout(() => {
         logOut();
@@ -61,12 +61,12 @@ function App() {
 
 
 
+
   }, [])
 
   const searchSpotify = async (searchTerm) => {
 
-    const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(searchTerm)}&type=track`, { headers: { 'Authorization': `Bearer ${accessToken}` } });
-    const data = await response.json();
+    const data = await spotify.fetchSearch(searchTerm, accessToken)
     setSearchResult(data.tracks.items)
 
   }

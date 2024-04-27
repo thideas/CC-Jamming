@@ -35,7 +35,7 @@ function App() {
   const logOut = () => {
     window.localStorage.removeItem("accessToken");
     setAccessToken(null);
-    window.location.href = "http://localhost:3000/";
+    window.location.href = 'http://localhost:3000/';
   }
 
 
@@ -50,7 +50,10 @@ function App() {
 
   const createPlaylist = async (playlistName) => {
     const playlistId = await spotify.createNewPlaylist(playlistName, userProfile.id, accessToken);
-    console.log(await spotify.addTracks(playList, playlistId, accessToken))
+    if (await spotify.addTracks(playList, playlistId, accessToken)) {
+      setPlaylistSent(true);
+      setTimeout(() => { setPlaylistSent(false) }, 2000)
+    }
 
   }
 
@@ -141,6 +144,8 @@ function App() {
 
 
       }
+
+      <p className={`text-2xl text-white absolute text-center w-full top-52 transition ${isPlaylistSent ? "opacity-100" : "opacity-0"}`}>Playlist has been saved</p>
 
     </div >
   );

@@ -1,8 +1,8 @@
 const spotify = {
-    redirectURI: 'http://localhost:3000/',
+    redirectURI: 'http://thideas.github.io/CC-Jamming',
     spotifyText: "test spotify",
     searchURL: "https://api.spotify.com/v1/search?q=",
-    authorizeURL: `https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(process.env.REACT_APP_CLIENTID)}&scope=playlist-modify-private&redirect_uri=${encodeURIComponent('http://localhost:3000/')}`,
+    authorizeURL: `https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(process.env.REACT_APP_CLIENTID)}&scope=playlist-modify-private&redirect_uri=${encodeURIComponent('http://thideas.github.io/CC-Jamming')}`,
 
 
 

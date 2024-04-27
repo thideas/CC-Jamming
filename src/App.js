@@ -35,7 +35,7 @@ function App() {
   const logOut = () => {
     window.localStorage.removeItem("accessToken");
     setAccessToken(null);
-    window.location.href = 'http://localhost:3000/';
+    window.location.href = 'http://thideas.github.io/CC-Jamming';
   }
 
 

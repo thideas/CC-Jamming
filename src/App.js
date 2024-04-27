@@ -76,7 +76,9 @@ function App() {
 
     }
 
-    setAccessToken(window.localStorage.getItem("accessToken"));
+    const parsedToken = JSON.parse(window.localStorage.getItem("accessToken"))
+    const isTokenActive = new Date() < new Date(parsedToken?.expiry);
+    isTokenActive && setAccessToken(parsedToken?.token);
 
 
 
@@ -84,6 +86,8 @@ function App() {
 
 
   }, [])
+
+
 
 
 

@@ -13,7 +13,8 @@ function App() {
   const [searchResult, setSearchResult] = useState([]);
   const [playList, setPlayList] = useState([]);
   const [accessToken, setAccessToken] = useState(null);
-  const [userProfile, setUserProfile] = useState(null)
+  const [userProfile, setUserProfile] = useState(null);
+  const [isPlaylistSent, setPlaylistSent] = useState(false)
 
 
 
@@ -49,7 +50,7 @@ function App() {
 
   const createPlaylist = async (playlistName) => {
     const playlistId = await spotify.createNewPlaylist(playlistName, userProfile.id, accessToken);
-    spotify.addTracks(playList, playlistId, accessToken)
+    console.log(await spotify.addTracks(playList, playlistId, accessToken))
 
   }
 

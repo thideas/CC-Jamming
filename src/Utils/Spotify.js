@@ -34,6 +34,7 @@ const spotify = {
         const uris = playlist.map((song) => song.uri);
         const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { method: 'POST', headers: { 'Authorization': `Bearer ${accessToken}` }, body: JSON.stringify({ "uris": uris, "position": 0 }) });
         const data = await response.json();
+        return data;
 
     }
 

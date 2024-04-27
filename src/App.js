@@ -61,12 +61,13 @@ function App() {
 
     if (hrefAccessToken) {
 
-      window.localStorage.setItem("accessToken", hrefAccessToken)
-      const tokenExpiresIn = spotify.getTokenExpiryFromURL();
+      const tokenExpiresInSec = spotify.getTokenExpiryFromURL();
+      const expiryDate = new Date(new Date().getTime() + tokenExpiresInSec * 1000)
+      window.localStorage.setItem("accessToken", JSON.stringify({ token: hrefAccessToken, expiry: expiryDate }))
 
       setTimeout(() => {
         logOut();
-      }, tokenExpiresIn * 1000);
+      }, tokenExpiresInSec * 1000);
 
       (async () => {
         const data = await spotify.fetchProfile(hrefAccessToken);

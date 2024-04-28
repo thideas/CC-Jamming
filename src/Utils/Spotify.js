@@ -1,4 +1,4 @@
-const redirectURI = 'https://thideas.github.io/CC-Jamming/'
+const redirectURI = 'http://localhost:3000/'
 
 const spotify = {
 

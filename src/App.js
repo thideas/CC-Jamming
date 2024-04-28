@@ -3,7 +3,7 @@ import SearchResults from "./Components/SearchResults/SearchResults";
 import Playlist from "./Components/Playlist/Playlist";
 import { useState, useEffect } from "react";
 import spotifyLogo from "./img/Spotify_Logo.png";
-import spotify from "./Utils/Spotify";
+import { spotify, redirectURI } from "./Utils/Spotify";
 
 
 
@@ -35,7 +35,7 @@ function App() {
   const logOut = () => {
     window.localStorage.removeItem("accessToken");
     setAccessToken(null);
-    window.location.href = 'http://thideas.github.io/CC-Jamming';
+    window.location.href = redirectURI;
   }
 
 
@@ -83,6 +83,7 @@ function App() {
     const parsedToken = JSON.parse(window.localStorage.getItem("accessToken"))
     const isTokenActive = new Date() < new Date(parsedToken?.expiry);
     isTokenActive && setAccessToken(parsedToken?.token);
+
 
 
 

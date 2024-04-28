@@ -1,10 +1,15 @@
+const redirectURI = 'https://thideas.github.io/CC-Jamming/'
+
 const spotify = {
-    redirectURI: 'http://thideas.github.io/CC-Jamming',
+
     spotifyText: "test spotify",
     searchURL: "https://api.spotify.com/v1/search?q=",
-    authorizeURL: `https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(process.env.REACT_APP_CLIENTID)}&scope=playlist-modify-private&redirect_uri=${encodeURIComponent('http://thideas.github.io/CC-Jamming')}`,
+    authorizeURL: `https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(process.env.REACT_APP_CLIENTID)}&scope=playlist-modify-private&redirect_uri=${encodeURIComponent(redirectURI)}`,
 
 
+    getRedirectURI() {
+        return this.redirectURI
+    },
 
     getAccessTokenFromURL() {
         return window.location.hash.split("&")[0].split("=")[1];
@@ -43,4 +48,4 @@ const spotify = {
 }
 
 
-export default spotify;
+export { spotify, redirectURI };

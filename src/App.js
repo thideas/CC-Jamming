@@ -85,6 +85,11 @@ function App() {
     const isTokenActive = new Date() < new Date(parsedToken?.expiry);
     isTokenActive && setAccessToken(parsedToken?.token);
 
+    isTokenActive && (async () => {
+      const data = await spotify.fetchProfile(parsedToken?.token);
+      setUserProfile(data);
+    })();
+
 
 
 
